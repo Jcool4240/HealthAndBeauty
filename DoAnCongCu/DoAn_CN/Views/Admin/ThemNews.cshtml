@@ -1,0 +1,78 @@
+﻿@model DoAn_CN.Models.BaiViet_Admin
+@{
+    ViewBag.Title = "ThemNews";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="main-page">
+    <div class="forms">
+        <div class=" form-grids row form-grids-right">
+            <div class="widget-shadow " data-example-id="basic-forms">
+                <div class="form-title">
+                    <h4>Thêm mới sản phẩm</h4>
+                </div>
+                @using (Html.BeginForm("ThemNews", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-body">
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Tiêu đề</label>
+                                <div class="col-sm-9">
+                                    @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Mô tả</label>
+                                <div class="col-sm-9">
+                                    <textarea name="Mota" class="form-control"></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Nội dung</label>
+                                <div class="col-sm-9">
+                                    <textarea id="mota" name="NoiDung" class="form-control"></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Danh mục</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownList("IdDM")
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Ảnh bìa</label>
+                                <div class="col-sm-9">
+                                    <input type="file" name="fileUpload" />
+                                    @ViewBag.Thongbao
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-9">
+                                    <input type="submit" value="Tạo mới bài viết" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Quay lại trang trước", "News")
+</div>
+
+

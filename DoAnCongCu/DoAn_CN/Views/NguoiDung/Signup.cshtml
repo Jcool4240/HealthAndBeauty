@@ -1,0 +1,56 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Sign Up </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Flat Sign Up Form Responsive Widget Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript">
+         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="~/Content/Signup/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="~/Content/Signup/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css" />
+    <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Raleway+Dots' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="header-w3l">
+    </div>
+    <div class="main-agileits">
+        <h2 class="sub-head">Sign Up</h2>
+        <div class="sub-main">
+            @using (Html.BeginForm("Signup", "NguoiDung"))
+            {
+        <form action="#" method="post">
+            <input placeholder="Họ Tên" name="HoTen" class="name" type="text" required="">
+            
+            <input placeholder="Tài khoản" name="TaiKhoan" class="name2" type="text" required="">
+           
+            <input placeholder="SĐT" name="DienthoaiKH" class="number" type="text" required="">
+          
+            <input placeholder="Email" name="Email" class="email" type="text" required="">
+            
+            <input placeholder="Mật khẩu" name="Matkhau" class="pass" type="password" required="">
+            
+            <input placeholder="Địa chỉ" name="DiachiKH" class="name" type="text" required="">
+           
+            <input placeholder="Ngày sinh" name="Ngaysinh" class="name" type="date" required="">
+        
+            <input type="submit" value="sign up">
+        </form>
+            }
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="footer-w3">
+        <p>&copy; Healthy and Beauty | Design by <a href="http://w3layouts.com">Jcool</a></p>
+    </div>
+</body>
+</html>

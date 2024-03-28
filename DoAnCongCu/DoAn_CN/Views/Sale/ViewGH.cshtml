@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "ViewGH";
+    Layout = "~/Views/Shared/_LayoutSaler.cshtml";
+}
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text> . . . </text>
+    }
+}
+
+<div class="page-head">
+    <div class="container">
+        <h3>Giỏ hàng của bạn</h3>
+    </div>
+</div>
+
+<div class="checkout">
+    <div class="container">
+        <div class="table-responsive checkout-right animated wow slideInUp" data-wow-delay=".5s">
+            <table class="timetable_sub">
+                <thead>
+                    <tr>
+                        <th width="120px">Xóa</th>
+                        <th>Hình</th>
+                        <th>Số lượng</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Tổng tiền</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr class="rem1">
+                        <td class="invert-closeb">
+                            <div class="rem">
+                                <a href="@Url.Action("Xoa1SP", "Sale", new { id = item.iidSP})">
+                                    <input type="submit" class="close1" value="">
+                                </a>
+
+                            </div>
+                        </td>
+                        <td class="invert-image"><a href="@Url.Action("chitietSP","Sale", new { id = item.iidSP})"><img src="~/Content/Sale/images/@item.simage_1" alt=" " class="img-responsive" /></a></td>
+                        <td class="invert">
+                            <div class="quantity">
+                                @using (Html.BeginForm("Capnhat", "Sale", new { id = item.iidSP }))
+                                {
+                                    <div class="quantity-select">
+                                        <input type="number" min="1" max="1000" value="@item.iSoluong" name="txtSoluong" />
+                                        <br />
+                                        <input type="submit" value="Cập nhật" style="margin:5px" />
+                                    </div>
+                                }
+                            </div>
+                        </td>
+                        <td class="invert">@Truncate(item.sTenSP, 100)</td>
+                        <td class="invert">@String.Format("{0:0,0}", item.dThanhtien) </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
+            <b>Chọn hình thức thanh toán</b>
+            <hr />
+            <form>
+                <div class="radiopading">
+                    <input name="ThanhToan" type="radio" value="1" checked="checked" class="radio" />&ensp;
+                    <img src="~/Content/Sale/images/TienTraoChaoMut.png" width="30" />&ensp;
+                    Thanh toán khi nhận hàng
+                </div>
+            </form>
+            <hr />
+            <div class="1 box">
+                <a href="@Url.Action("GioHang", "Sale")" id="1">Đặt hàng ngay và luôn</a>
+            </div>
+            <div class="2 box">
+                <a href="@Url.Action("GioHangMomo", "Sale")" id="2">Thanh toán bằng Momo</a>
+            </div>
+            <div class="3 box">
+                <a href="@Url.Action("GioHangVNPay", "Sale")" id="3">Thanh toán bằng VNPay</a>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script>
+                document.getElementById("2").style.visibility = "hidden";
+                document.getElementById("3").style.visibility = "hidden";
+                $(document).ready(function () {
+                    $('input[type="radio"]').click(function () {
+                        var inputValue = $(this).attr("value");
+                        var targetBox = $("." + inputValue);
+                        $(".box").not(targetBox).hide();
+                        document.getElementById("2").style.visibility = "visible";
+                        document.getElementById("3").style.visibility = "visible";
+                        $(targetBox).show();
+
+                    });
+                });
+            </script>
+        </div>
+        <div class="clearfix"> </div>
+        <br />
+
+    </div>
+</div>
+
+<style>
+    .radio {
+        width: 22px;
+        height: 22px;
+        border: 1px solid rgb(120, 120, 120);
+        border-radius: 50%;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 10px 13px 10px 0px;
+        position: relative;
+        z-index: 1;
+        color: rgb(120, 120, 120);
+        padding:20px
+    }
+    .radiopading{
+        padding:3px;
+    }
+</style>

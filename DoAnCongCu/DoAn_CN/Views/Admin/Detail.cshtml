@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="main-page">
+    <div class="forms">
+        <div class=" form-grids row form-grids-right">
+            <div class="widget-shadow " data-example-id="basic-forms">
+                <div class="form-title">
+                    <h3>Chi tiết đơn hàng</h3>
+                </div>
+                <br />
+                <div>
+                    @foreach (var item in Model)
+                    {
+                        <dl class="dl-horizontal">
+                            <dt>Tên sản phẩm:</dt>
+                            <dd>@item.SanPham.TenSP</dd>
+
+                            <dt>Hình:</dt>
+                            <dd><img src="~/Content/Sale/images/@item.SanPham.image_1" /></dd>
+
+                            <dt>Số Lượng:</dt>
+                            <dd>@item.SL sản phẩm</dd>
+
+                            <dt>Thành tiền:</dt>
+                            <dd>@String.Format("{0:0,0}", item.DonGia) VNĐ</dd>
+
+                        </dl>
+                        <hr />
+                    }
+                    @Html.ActionLink("Trở lại", "ViewDDH")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

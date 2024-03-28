@@ -1,0 +1,64 @@
+﻿@model DoAn_CN.Models.BaiViet_Admin
+
+@{
+    ViewBag.Title = "XoaBA";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="main-page">
+    <div class="forms">
+        <div class=" form-grids row form-grids-right">
+            <div class="widget-shadow " data-example-id="basic-forms">
+                <div class="form-title">
+                    <h3>Bạn có chắc muốn xóa bài viết @Model.id</h3>
+                </div>
+                <br />
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Tiêu đề:
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.TieuDe)
+                        </dd>
+
+                        <dt>
+                            Mô tả:
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Mota)
+                        </dd>
+
+                        <dt>
+                            Ngày thêm:
+                        </dt>
+
+                        <dd>
+                            @String.Format("{0:dd/MM/yyyy}", Model.NgayThem)
+                        </dd>
+
+                        <dt>
+                            Hình:
+                        </dt>
+
+                        <dd>
+                            <img src="~/Content/Home/images/@Model.Avatar" width="150" />
+                            
+                        </dd>
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="col-sm-offset-2">
+                            @Html.ActionLink("Quay lại trang quản lý", "News")&emsp;&emsp;&emsp;
+                            <input type="submit" value="Đồng ý" class="btn btn-default" />
+                        </div>
+                        <br />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

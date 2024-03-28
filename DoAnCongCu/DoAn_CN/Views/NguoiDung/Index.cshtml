@@ -1,0 +1,56 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> ĐĂNG NHẬP </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Multiple Login Forms template Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login sign up Responsive web template, SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+ 
+    <link href="~/Content/Login/css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Athiti:400,200,300,500,600,700' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+    <div class="main">
+        <div class="login-form login-form-two">
+            <div class="agile-row">
+                <div class="login-agileits-top">
+                    @using (Html.BeginForm("LogIn", "NguoiDung"))
+                    {
+                        <form action="#" method="post">
+                            <div class="input-row">
+                                <input type="text" class="Username" name="Username" placeholder="Enter Your Email" required="" />
+                                <input type="password" class="" name="Password" placeholder="Password" required="" />
+
+                            </div>
+                            <div class="agileits-row2">
+                                <input type="checkbox" id="brand1" value="">
+                                <label for="brand1"><span></span>Nhớ mật khẩu.</label>
+                            </div>
+                            <input type="submit" value="ĐĂNG NHẬP">
+                            <h4 style="color:red; font-style: italic;"> @ViewBag.ThongBao </h4>
+                        </form>
+                    }
+                </div>
+                <div class="agileits-bottom-two">
+                    <p><a href="@Url.Action("Signup","NguoiDung")">Tạo mới tài khoản.</a></p>
+                </div>
+                <hr />
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="copyright">
+        <p> Healthy and Beauty | Design by <a href="http://w3layouts.com/" target="_blank">Jcool</a></p>
+    </div>
+</body>
+</html>

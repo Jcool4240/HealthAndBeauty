@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "LienHe";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="contact">
+    <div class="container">
+        <h2>Liên hệ</h2>
+        <div class="map">
+            <h4></h4>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125404.29923661126!2d106.78985055000001!3d10.820161500000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d85e042bf04b%3A0xbb26baec1664394d!2zVGjhu6cgxJDhu6ljLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1711652154477!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="100%" height="175" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+        </div>
+        <div class="address">
+            <div class="col-md-4 address-grids">
+                <h4>Địa chỉ :</h4>
+                <ul>
+                    <li>
+                        <p>
+                            Phước Long B<br>
+                            Quận 9,<br>
+                            Tp Hồ Chí Minh 
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4 address-grids">
+                <h4>Điện thoại:</h4>
+                <p>+84 123 456 789</p>
+                <p>+84 889 456 789</p>
+            </div>
+            <div class="col-md-4 address-grids">
+                <h4>Email:</h4>
+                <p><a href="mailto:jcool@email.com">jcool@email.com</a></p>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="contact-form">
+            <h4>Gửi phản hồi cho chúng tôi</h4>
+            @using (Html.BeginForm("LienHe", "Home"))
+            {
+                <form action="https://sendmail.w3layouts.com/submitForm" method="post">
+                    <input type="text" name="HoTen" placeholder="Họ Tên" >
+                    <span><label style="color:red">@ViewData["Loi1"]</label></span>
+
+                    <input type="email" name="Email" placeholder="Email" >
+                    <span><label style="color:red">@ViewData["Loi2"]</label></span>
+
+                    <input type="text" name="SDT" placeholder="Số điện thoại" >
+                    <span><label style="color:red">@ViewData["Loi3"]</label></span>
+
+                    <textarea placeholder="Nội dung phản hồi" name="NoiDung" ></textarea>
+                    <span><label style="color:red">@ViewData["Loi4"]</label></span>
+                    <hr />
+                    <button type="submit" class="btn1 btn-1 btn-1b">Gửi phản hồi</button>
+                </form>
+            }
+            </div>
+    </div>
+</div>
+

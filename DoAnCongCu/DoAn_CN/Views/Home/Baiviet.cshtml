@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Baiviet";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=265453772220339&autoLogAppEvents=1" nonce="BCOMHOKP"></script>
+
+<div class="container">
+    <div class="single">
+        <div class="blog-to">
+            <h2 style="color:#000">@Html.Raw(Model.TieuDe)</h2>
+            <span style="padding:5px">
+                @String.Format("{0:dd/MM/yyyy}", Model.NgayThem)
+            </span>
+            <hr />
+            <div class="fb-like" data-href="https://localhost:44375/" data-width="" data-layout="button_count" data-action="like" data-size="large" data-share="true"></div>
+            <hr />
+            @Html.Raw(Model.NoiDung)
+        </div>
+        <br />
+        <div class="fb-comments" data-href="https://localhost:44375/" data-width="100%" data-numposts="10"></div>
+    </div>
+</div>
+<br />

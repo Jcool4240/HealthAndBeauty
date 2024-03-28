@@ -1,0 +1,342 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="welcome">
+    <div class="container">
+        <div class="welcome-info">
+            
+        </div>
+    </div>
+</div>
+<!---->
+<div class="content">
+    <div class="container">
+        <div class="col-md-8 content-left">
+
+            <div class="information">
+                <h4>Tính chỉ số Calorie</h4>
+                <form class="form-horizontal" name="cal_frm" id="cal_frm" onsubmit="return false">
+
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="control-label">Giới tính</label>
+                            <div class="">
+                                <select id="opGender" name="opGender" class="form-control">
+                                    <option value="0">Nam</option>
+                                    <option value="1">Nữ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" control-label">Tuổi</label>
+                            <div class="">
+                                <input id="txtAge" name="txtAge" class="form-control input-md" type="text">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Chiều cao</label>
+                            <div class="">
+                                <input id="txtHeight" name="txtHeight" class="form-control input-md" type="text">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label" for="txtWeight">Cân nặng</label>
+                            <div class="">
+                                <input id="txtWeight" name="txtWeight" class="form-control input-md" type="text">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Hoạt động</label>
+                            <div class="">
+                                <select id="opActivity" name="opActivity" class="form-control">
+                                    <option value="0">Rất ít hoặc không tập thể dục</option>
+                                    <option value="1">Nhẹ Nhàng (Tập thể dục nhẹ - 1-3 ngày/tuần)</option>
+                                    <option value="2">Thường Xuyên (Tập thể dục 3-5 ngày/tuần)</option>
+                                    <option value="3">Tích Cực (Chăm chỉ tập thể dục 6-7 ngày/tuần</option>
+                                    <option value="4">Đam Mê (tập gấp đôi Tích cực)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div id="thongbaoloi" class="alert alert-warning" role="alert" style="display: none;"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"></label>
+                            <div class="">
+                                <input type="button" name="tinhbodyfat" class="btn btn-success" value="Tính Toán" onclick="Calculate()">
+                                <input type="reset" class="btn btn-danger" value="Làm lại" onclick="resetAll()">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label" for="textinput">Kết quả</label>
+                            <div class="">
+                                <div id="feedback" class="alert alert-success" role="alert" style="font-weight:bold;"></div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+        @helper Truncate(string input, int length)
+        {
+            if (input.Length < length)
+            {
+                @input
+            }
+            else
+            {
+                @input.Substring(0, length)<text> . . . </text>
+            }
+        }
+        <div class="col-md-4 content-right">
+            <ul class="nav nav-tabs nav2" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Bài viết xu hướng</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active re-pad2" id="home">
+                    @foreach (var item in Model)
+                    {
+                        <div class="game1">
+                            <div class="col-md-3 tab-pic">
+
+                                <a href="@Url.Action("Baiviet","Home", new { id = item.id })"><img src="~/Content/Home/images/@item.Avatar" alt="/" class="img-responsive"></a>
+                            </div>
+                            <div class="col-md-9 tab-pic-info">
+                                <h4><a href="@Url.Action("Baiviet","Home", new { id = item.id })">@Truncate(item.TieuDe, 23)</a></h4>
+                                <p>@Truncate(item.Mota, 72)</p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="more">
+                                <a href="@Url.Action("Baiviet","Home", new { id = item.id })">Xem thêm</a>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+                <div role="tabpanel" class="tab-pane re-pad2" id="profile">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+
+<script>
+    function Calculate() {
+        var ht = parseFloat(document.cal_frm.txtHeight.value);
+        var wt = parseFloat(document.cal_frm.txtWeight.value);
+        var ag = parseInt(document.cal_frm.txtAge.value);
+        var sexf = false;
+        if (document.cal_frm.opGender.value == "1") {
+            sexf = true;
+        }
+        document.getElementById('feedback').innerHTML = '';
+        var errors = '';
+        if ((ht < 122) || (ht > 200) || isNaN(ht)) {
+            err = '122cm đến 200cm';
+            errors += 'Chiều cao phải từ ' + err + '!<br>';
+        }
+        if ((wt < 30) || (wt > 100) || isNaN(wt)) {
+            err = '30Kg đến 100Kg';
+            errors += 'Cân nặng phải từ ' + err + '!<br>';
+        }
+        if ((ag < 19) || (ag > 100) || isNaN(ag)) {
+            err = '19 đến 100';
+            errors += 'Tuổi phải từ ' + err + '!<br>';
+        }
+        if (errors) {
+            alert('Thông tin nhập vào chưa chính xác:<br><br>' + errors);
+            return;
+        }
+        var fatOw = 18;
+        var fatOb = 25;
+        var bstate = true;
+        var BMR;
+        var fatpercent;
+        var w1;
+        var s1;
+        var BMI = Math.round((wt * 10000 / (ht * ht)) * 10) / 10;
+        if (sexf == true) {
+            fatOw = 25;
+            fatOb = 31;
+            BMR = 655 + (9.6 * wt) + (1.8 * ht) - (4.7 * ag);
+        } else {
+            BMR = 66 + (13.7 * wt) + (5 * ht) - (6.8 * ag);
+        }
+        BMR = Math.round(BMR * 10) / 10;
+        var dailyCal;
+        if (document.cal_frm.opActivity.value == "0") {
+            dailyCal = BMR * 1.2;
+        }
+        if (document.cal_frm.opActivity.value == "1") {
+            dailyCal = BMR * 1.375;
+        }
+        if (document.cal_frm.opActivity.value == "2") {
+            dailyCal = BMR * 1.55;
+        }
+        if (document.cal_frm.opActivity.value == "3") {
+            dailyCal = BMR * 1.725;
+        }
+        if (document.cal_frm.opActivity.value == "4") {
+            dailyCal = BMR * 1.9;
+        }
+        document.getElementById('feedback').innerHTML = "<p>Chỉ số BMI của bạn là: " + BMI + "<br />" + "Chỉ số BMR của bạn là: " + BMR +
+            "<br />" + "Lượng Calorie tối thiểu hàng ngày: " + (Math.round(dailyCal)) + "<br /></p>";
+    }
+
+    function logten(v) {
+        return (Math.log(v) / Math.log(10));
+    }
+
+    function resetAll() {
+        document.getElementById('feedback').innerHTML = '';
+    }
+
+    function alert(val) {
+        $("#thongbaoloi").show();
+        $("#thongbaoloi").html(val);
+    }
+    $(document).ready(function () {
+        closeModal();
+    });
+</script>
+<script>
+    (function ($) {
+        $.fn.numeric = function (config, callback) {
+            if (typeof config === 'boolean') {
+                config = { decimal: config };
+            }
+            config = config || {};
+            // if config.negative undefined, set to true (default is to allow negative numbers)
+            if (typeof config.negative == "undefined") config.negative = true;
+            // set decimal point
+            var decimal = (config.decimal === false) ? "" : config.decimal || ".";
+            // allow negatives
+            var negative = (config.negative === true) ? true : false;
+            // callback function
+            var callback = typeof callback == "function" ? callback : function () { };
+            // set data and methods
+            return this.data("numeric.decimal", decimal).data("numeric.negative", negative).data("numeric.callback", callback).keyup($.fn.numeric.keyup);
+        }
+
+        $.fn.numeric.keyup = function (e) {
+            var val = this.value;
+            if (val.length > 0) {
+                // get carat (cursor) position
+                var carat = $.fn.getSelectionStart(this);
+                // get decimal character and determine if negatives are allowed
+                var decimal = $.data(this, "numeric.decimal");
+                var negative = $.data(this, "numeric.negative");
+
+                // prepend a 0 if necessary
+                if (decimal != "") {
+                    // find decimal point
+                    var dot = val.indexOf(decimal);
+                    // if dot at start, add 0 before
+                    if (dot == 0) {
+                        this.value = "0" + val;
+                    }
+                    // if dot at position 1, check if there is a - symbol before it
+                    if (dot == 1 && val.charAt(0) == "-") {
+                        this.value = "-0" + val.substring(1);
+                    }
+                    val = this.value;
+                }
+
+                // if pasted in, only allow the following characters
+                var validChars = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '-', decimal];
+                // get length of the value (to loop through)
+                var length = val.length;
+                // loop backwards (to prevent going out of bounds)
+                for (var i = length - 1; i >= 0; i--) {
+                    var ch = val.charAt(i);
+                    // remove '-' if it is in the wrong place
+                    if (i != 0 && ch == "-") {
+                        val = val.substring(0, i) + val.substring(i + 1);
+                    }
+                    // remove character if it is at the start, a '-' and negatives aren't allowed
+                    else if (i == 0 && !negative && ch == "-") {
+                        val = val.substring(1);
+                    }
+                    var validChar = false;
+                    // loop through validChars
+                    for (var j = 0; j < validChars.length; j++) {
+                        // if it is valid, break out the loop
+                        if (ch == validChars[j]) {
+                            validChar = true;
+                            break;
+                        }
+                    }
+                    // if not a valid character, or a space, remove
+                    if (!validChar || ch == " ") {
+                        val = val.substring(0, i) + val.substring(i + 1);
+                    }
+                }
+                // remove extra decimal characters
+                var firstDecimal = val.indexOf(decimal);
+                if (firstDecimal > 0) {
+                    for (var i = length - 1; i > firstDecimal; i--) {
+                        var ch = val.charAt(i);
+                        // remove decimal character
+                        if (ch == decimal) {
+                            val = val.substring(0, i) + val.substring(i + 1);
+                        }
+                    }
+                }
+                // set the value and prevent the cursor moving to the end
+                this.value = val;
+                $.fn.setSelection(this, carat);
+            }
+        }
+
+        $.fn.getSelectionStart = function (o) {
+            if (o.createTextRange) {
+                var r = document.selection.createRange().duplicate();
+                r.moveEnd('character', o.value.length);
+                if (r.text == '') return o.value.length;
+                return o.value.lastIndexOf(r.text);
+            } else return o.selectionStart;
+        }
+
+        // set the selection, o is the object (input), p is the position ([start, end] or just start)
+        $.fn.setSelection = function (o, p) {
+            // if p is number, start and end are the same
+            if (typeof p == "number") p = [p, p];
+            // only set if p is an array of length 2
+            if (p && p.constructor == Array && p.length == 2) {
+                if (o.createTextRange) {
+                    var r = o.createTextRange();
+                    r.collapse(true);
+                    r.moveStart('character', p[0]);
+                    r.moveEnd('character', p[1]);
+                    r.select();
+                }
+                else if (o.setSelectionRange) {
+                    o.focus();
+                    o.setSelectionRange(p[0], p[1]);
+                }
+            }
+        }
+
+    })(jQuery);
+</script>
+
+
+

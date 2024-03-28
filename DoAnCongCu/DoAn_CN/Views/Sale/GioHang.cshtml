@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_LayoutSaler.cshtml";
+}
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text> . . . </text>
+    }
+}
+<!-- banner -->
+<div class="page-head">
+    <div class="container">
+        <h3>Giỏ hàng của bạn</h3>
+    </div>
+</div>
+<!-- //banner -->
+<!-- check out -->
+<div class="checkout">
+    <div class="container">
+
+        <div class="table-responsive checkout-right animated wow slideInUp" data-wow-delay=".5s">
+            <table class="timetable_sub">
+                <thead>
+                    <tr>
+                        <th width="120px">Xóa</th>
+                        <th>Hình</th>
+                        <th>Số lượng</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Tổng tiền</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr class="rem1">
+                        <td class="invert-closeb">
+                            <div class="rem">
+                                <a href="@Url.Action("Xoa1SP", "Sale", new { id = item.iidSP})">
+                                    <input type="submit" class="close1" value="">
+                                </a>
+
+                            </div>
+                        </td>
+                        <td class="invert-image"><a href="@Url.Action("chitietSP","Sale", new { id = item.iidSP})"><img src="~/Content/Sale/images/@item.simage_1" alt=" " class="img-responsive" /></a></td>
+                        <td class="invert">
+                            <div class="quantity">
+                                @using (Html.BeginForm("Capnhat", "Sale", new { id = item.iidSP }))
+                                {
+                                    <div class="quantity-select">
+                                        <input type="number" min="1" max="1000" value="@item.iSoluong" name="txtSoluong" />
+                                        <br />
+                                        <input type="submit" value="Cập nhật" style="margin:5px" />
+                                    </div>
+                                }
+                            </div>
+                        </td>
+                        <td class="invert">@Truncate(item.sTenSP, 100)</td>
+                        <td class="invert">@String.Format("{0:0,0}", item.dThanhtien) </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        @using (Html.BeginForm("Dathang", "Sale"))
+        {
+            <div class="checkout-left">
+
+                <div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
+                    <h4>Thông tin đơn hàng </h4>
+                    <ul>
+                        <li>Tổng số lượng<i></i> <span>@ViewBag.TongSoLuong sản phẩm</span></li>
+                        <li>Tạm tính<i></i> <span>@String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</span></li>
+                        <li>Phí vận chuyển<i></i> <span>30,000 VNĐ</span></li>
+                        <li>Thành tiền<i></i> <span>@String.Format("{0:0,0}", ViewBag.Tongtien + 30000)</span></li>
+
+                    </ul>
+                    <ul>
+                        @using DoAn_CN.Models
+                        @{
+                            ThanhVien cus = (ThanhVien)Session["tk"];
+                        }
+                        <li>Họ tên khách hàng<i></i> <span>@cus.HoTen</span></li>
+                        <li>SĐT:<i></i> <span>@cus.DienthoaiKH</span></li>
+                        <li>Địa chỉ:<i></i> <span>@cus.DiachiKH</span></li>
+                        <li>Ngày đặt:<i></i> <span>@DateTime.Now.ToShortDateString()</span></li>
+
+                    </ul>
+                </div>
+
+                <div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
+                    <input type="submit" value="Đặc hàng đi" />
+                </div>
+                <div class="clearfix"> </div>
+                <br />
+                <h4>Hàng của bạn được giao trước ngày @String.Format("{0:dd/MM/yyyy}", DateTime.Today.AddDays(4))</h4>
+            </div>
+        }
+    </div>
+</div>
+

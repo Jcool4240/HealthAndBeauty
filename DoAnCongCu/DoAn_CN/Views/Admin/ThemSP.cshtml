@@ -1,0 +1,154 @@
+﻿@model DoAn_CN.Models.SanPham
+
+@{
+    ViewBag.Title = "ThemSP";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="main-page">
+    <div class="forms">
+        <div class=" form-grids row form-grids-right">
+            <div class="widget-shadow " data-example-id="basic-forms">
+                <div class="form-title">
+                    <h4>Thêm mới sản phẩm</h4>
+                </div>
+                @using (Html.BeginForm("ThemSP", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-body">
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Tên sản phẩm</label>
+                                <div class="col-sm-9">
+                                    @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                         
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Mô tả</label>
+                                <div class="col-sm-9">
+                                    <textarea id="mota" name="mota" class="form-control"></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Danh mục</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownList("idDM")
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Loại sản phẩm</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownList("idLoai")
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Thương hiệu</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownList("idTH")
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Xuất xứ</label>
+                                <div class="col-sm-9">
+                                    @Html.EditorFor(model => model.XuatXu, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.XuatXu, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Ngày thêm</label>
+                                <div class="col-sm-9">
+                                    <input type="date" name="NgayThem" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Hình 1</label>
+                                <div class="col-sm-9">
+                                    <input type="file" name="fileUpload" />
+                                    @ViewBag.Thongbao
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Hình 2</label>
+                                <div class="col-sm-9">
+                                    <input type="file" name="fileUpload1" />
+                                    @ViewBag.Thongbao
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Hình 3</label>
+                                <div class="col-sm-9">
+                                    <input type="file" name="fileUpload2" />
+                                    @ViewBag.Thongbao
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Hình 4</label>
+                                <div class="col-sm-9">
+                                    <input type="file" name="fileUpload3" />
+                                    @ViewBag.Thongbao
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Giá gốc</label>
+                                <div class="col-sm-9">
+                                    @Html.EditorFor(model => model.GiaGoc, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GiaGoc, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Giá bán</label>
+                                <div class="col-sm-9">
+                                    @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Số lượng</label>
+                                <div class="col-sm-9">
+                                    @Html.EditorFor(model => model.Sl_Con, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Sl_Con, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Trọng lượng</label>
+                                <div class="col-sm-9">
+                                    @Html.EditorFor(model => model.KhoiLuong, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.KhoiLuong, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-9">
+                                    <input type="submit" value="Thêm mới sản phẩm" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Quay lại trang sản phẩm", "ViewSP")
+</div>

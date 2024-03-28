@@ -1,0 +1,125 @@
+﻿@model DoAn_CN.Models.SanPham
+
+@{
+    ViewBag.Title = "XoaSP";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="main-page">
+    <div class="forms">
+        <div class=" form-grids row form-grids-right">
+            <div class="widget-shadow " data-example-id="basic-forms">
+                <div class="form-title">
+                    <h3>Bạn có chắc muốn xóa sản phẩm @Model.idSP</h3>
+                </div>
+                <br />
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Tên sản phẩm:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.TenSP)
+                        </dd>
+
+                        <dt>
+                            Danh mục:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Loai_SP.DanhMuc.TenDM)
+                        </dd>
+
+                        <dt>
+                            Loại:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Loai_SP.TenLoai)
+                        </dd>
+
+                        <dt>
+                            Thương hiệu:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ThuongHieu.TenTH)
+                        </dd>
+
+                        <dt>
+                            Xuất xứ:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.XuatXu)
+                        </dd>
+
+                        <dt>
+                            Ngày cập nhật:
+                        </dt>
+
+                        <dd>
+                            @String.Format("{0:dd/MM/yyyy}", Model.NgayThem)
+                        </dd>
+
+                        <dt>
+                            Hình:
+                        </dt>
+
+                        <dd>
+                            <img src="~/Content/Sale/images/@Model.image_1" width="150" />
+                            <img src="~/Content/Sale/images/@Model.image_2" width="150" />
+                            <img src="~/Content/Sale/images/@Model.image_3" width="150" />
+                            <img src="~/Content/Sale/images/@Model.image_4" width="150" />
+                        </dd>
+
+                        <dt>
+                            Giá gốc:
+                        </dt>
+
+                        <dd>
+                            @String.Format("{0:0,0}", Model.GiaGoc) VNĐ
+                        </dd>
+
+                        <dt>
+                            Giá bán:
+                        </dt>
+
+                        <dd>
+                            @String.Format("{0:0,0}", Model.GiaBan) VNĐ
+                        </dd>
+
+                        <dt>
+                            Số lượng còn:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Sl_Con) sản phẩm
+                        </dd>
+
+                        <dt>
+                            Khối lượng:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.KhoiLuong) gam
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="col-sm-offset-2">
+                            @Html.ActionLink("Trở lại", "ViewThuonghieu")&emsp;&emsp;&emsp;
+                            <input type="submit" value="Đồng ý" class="btn btn-default" />
+                        </div>
+                        <br />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+﻿@using DoAn_CN.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SanPham>
+@{
+    ViewBag.Title = "ViewSP";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text> . . . </text>
+    }
+}
+
+<div class="main-page">
+    <div class="tables">
+        <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+            <div style="display:inline-block;width:100%">
+                <button onclick="document.location.href = '/Admin/ThemSP'" style=" background-color: #F2B33F; color: #fff;">Thêm sản phẩm</button>
+                <div style="float:right">
+                    <form action="/Admin/TimKiem" method="post">
+                        <input type="text" name="keyword" />
+                        <button type="submit">Tìm kiếm</button>
+                    </form>
+                </div>
+            </div>
+            <hr />
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Tên sản phẩm</th>
+                        <th>Hình ảnh</th>
+                        <th>Mô tả</th>
+                        <th>Ngày thêm </th>
+                        <th>Giá bán</th>
+                        <th>Giá gốc</th>
+                        <th>Số lượng</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Truncate(item.TenSP, 55)</td>
+                            <td>
+                                <img src="~/Content/Sale/images/@item.image_1" width="130" />
+                            </td>
+                            <td>@Html.Raw(Truncate(item.mota, 55))</td>
+
+                            <td>
+                                <span style="background-color:#00ff21; border-radius:20px">@String.Format("{0:dd/MM/yyyy}", item.NgayThem)</span>
+                            </td>
+                            <td>
+                                @String.Format("{0:0,0}", item.GiaGoc) VNĐ
+                            <td>
+                                @String.Format("{0:0,0}", item.GiaBan) VNĐ
+                            </td>
+                            <td>
+                                @item.Sl_Con sản phẩm
+                            </td>
+                            <td>
+                                <a href="@Url.Action("SuaSP","Admin", new { id = item.idSP})" class="ti-book"></a> <br /> <br />
+                                <a href="@Url.Action("XoaSP","Admin",new { id = item.idSP})" class="ti-trash"></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <nav>
+                    <ul class="pagination pagination-sm">
+                        
+                        <li>@Html.PagedListPager(Model, page => Url.Action("ViewSP", new { page = page }))</li>
+                        
+                    </ul>
+                </nav>
+            </table>
+        </div>
+    </div>
+</div>

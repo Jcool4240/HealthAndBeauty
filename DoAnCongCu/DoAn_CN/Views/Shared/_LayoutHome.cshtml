@@ -1,0 +1,213 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Làm đẹp và chăm sóc sức khỏe</title>
+
+    <link href="~/Content/Home/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="~/Content/Home/css/style.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="~/Content/Home/css/lightbox.css">
+    <script type='text/javascript' src="~/Content/Home/js/jquery-1.11.1.min.js"></script>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800|Titillium+Web:400,600,700,300' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Video Gaming News Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    
+    <link rel="shortcut icon" href="~/Content/Home/images/Logo ND_03.png" type="image/png" />
+    <link href="~/Content/themify-icons/themify-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <script>
+        isBool = true;
+        function show() {
+            if (isBool) {
+                document.getElementById("Matkhau").setAttribute("type", "text");
+                isBool = false;
+            } else {
+                document.getElementById("Matkhau").setAttribute("type", "password");
+                isBool = true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "114351136949111");
+        chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v12.0'
+            });
+        };
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div class="banner">
+        <div class="container">
+            <div class="headr-right">
+                <div class="details">
+                    <ul>
+
+                        @if (Session["tk"] != null)
+                        {
+                            <li>
+                                <a href="@Url.Action("SignOut","NguoiDung")"><span>Đăng xuất </span></a>
+                            </li>
+                            <li><a href="@Url.Action("Thongtin", "NguoiDung", new { id = Session["id"]})"><span class="glyphicon" aria-hidden="true"></span>@Session["tendangnhap"]</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Index","NguoiDung")"><span class="glyphicon" aria-hidden="true"></span>Đăng nhập</a></li>
+
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="banner_head_top">
+
+                <div class="logo">
+                    <h1><a href="index.html">Healthy<span>and</span>Beauty</a></h1>
+                </div>
+                <div class="top-menu">
+                    <div class="content white">
+                        <nav class="navbar navbar-default">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                                    <li class="dropdown">
+                                        <ul class="dropdown-menu">
+                                            <li><a href="review.html">Về làm đẹp</a></li>
+                                            <li><a href="review.html">Về chăm sóc sức khỏe & làm đẹp </a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/Home/NewsDM/1">Làm đẹp</a></li>
+                                    <li><a href="/Home/NewsDM/2">Sức khỏe</a></li>
+                                    <li><a href="@Url.Action("Index","Sale")">Jcool store</a></li>
+                                    <li><a href="@Url.Action("LienHe","Home")">Liên hệ</a></li>
+                                </ul>
+                            </div>
+
+                        </nav>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="banner-info">
+                <h3>Chào mừng đến với Website của  chúng tôi</h3>
+                <h2>Health and beauty</h2>
+            </div>
+            <div class="social">
+                <ul>
+                    <li><a href="#"><span class="fa"> </span></a></li>
+                    <li><a href="#"><span class="tw"> </span></a></li>
+                    <li><a href="#"><span class="g"> </span></a></li>
+                    <li><a href="#"><span class="in"> </span></a></li>
+                    <li><a href="#"><span class="pin"> </span></a></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <div class="footer">
+        <div class="container">
+            <div class="footer-grids">
+                <div class="col-md-6 news-ltr">
+                    <h4>ĐĂNG KÝ BẢN TIN</h4>
+                    <form action="#" method="post">
+                        <input type="text" class="text" name="email" placeholder="Nhập địa chỉ email của bạn" required="" />
+                        <input type="submit" value="Gửi">
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+                <div class="col-md-3 ftr-grid">
+                    <h3>Về chúng tôi</h3>
+                    <ul class="ftr-list">
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="#">Hỏi đáp</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 ftr-grid">
+                    <h3>Trợ giúp</h3>
+                    <ul class="ftr-list">
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                        <li><a href="#">Điều khoản riêng tư</a></li>
+                        <li><a href="#">Điều khoản cộng đồng</a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="copywrite">
+        <div class="container">
+            <p> &copy; Healthy and Beauty | Design by  <a href="http://w3layouts.com">Jcool</a></p>
+        </div>
+    </div>
+
+    <div id="backtop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop()) {
+                    $('#backtop').fadeIn();
+                } else {
+                    $('#backtop').fadeOut();
+                }
+            });
+            $("#backtop").click(function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+        });
+    </script>
+    <style>
+        #backtop {
+            width: 50px;
+            height: 50px;
+            background: tomato;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            position: fixed;
+            bottom: 40px;
+            right: 20px;
+            cursor: pointer;
+            margin-bottom: 60px;
+        }
+    </style>
+</body>
+</html>

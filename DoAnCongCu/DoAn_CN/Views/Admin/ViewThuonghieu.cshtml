@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "ViewThuonghieu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="main-page">
+    <div class="forms">
+        <div class=" form-grids row form-grids-right">
+            <div class="widget-shadow " data-example-id="basic-forms">
+                <div class="form-title">
+                    <h4>Thêm mới thương hiệu sản phẩm</h4>
+                </div>
+                @using (Html.BeginForm("ThemTH", "Admin"))
+                {
+                    <div class="form-body">
+
+                        <form class="form-horizontal">
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Tên thương hiệu</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="TenThuongHieu" placeholder="Nhập tên thương hiệu" required />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="col-sm-offset-2">
+                                <input type="submit" class="btn btn-default" value="Thêm thương hiệu mới" />
+                            </div>
+                        </form>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main-page">
+    <div class="tables">
+        <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+            <h4>Thương hiệu sản phẩm</h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Mã thương hiệu</th>
+                        <th>Tên thương hiệu</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>@item.idTH</td>
+                        <td>@item.TenTH</td>
+                        <td>
+                            <a href="@Url.Action("SuaTH","Admin", new { id = item.idTH})" class="ti-book"></a>&emsp;
+                            <a href="@Url.Action("XoaTH","Admin",new { id = item.idTH})" class="ti-trash"></a>
+                        </td>
+                        
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

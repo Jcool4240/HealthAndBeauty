@@ -1,0 +1,88 @@
+﻿@model IEnumerable<DoAn_CN.Models.CT_DDH>
+@{
+    ViewBag.Title = "LichSuMH";
+    Layout = "~/Views/Shared/_LayoutSaler.cshtml";
+}
+
+<!-- banner -->
+<div class="page-head">
+    <div class="container">
+    </div>
+</div>
+<!-- //banner -->
+<!-- single -->
+<div class="single">
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>
+                    Mã đơn hàng
+                </th>
+                <th>
+                    Ngày mua
+                </th>
+                <th>
+                    Tên Sản phẩm
+                </th>
+                <th>
+                    Hình ảnh
+                </th>
+                <th>
+                    Số lượng
+                </th>
+                <th>
+                    Thành tiền
+                </th>
+                <th>
+                    Trạng thái
+                </th>
+                <th>
+                    Hủy đơn
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonDatHang.idDDH)
+            </td>
+
+            <td>
+                @String.Format("{0:dd/MM/yyyy}", item.DonDatHang.NgayDat)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.SanPham.TenSP)
+            </td>
+
+            <td>
+                <img src="~/Content/Sale/images/@item.SanPham.image_1" width="100" />
+            </td>
+
+            <td style="font-weight:bold">
+                @Html.DisplayFor(modelItem => item.SL)
+            </td>
+
+            <td>
+                @String.Format("{0:0,0}", item.DonGia)
+            </td>
+
+            <td style="color:red">
+                @Html.DisplayFor(modelItem => item.DonDatHang.TrangThai.TrangThai1)
+            </td>
+           
+            <td>
+                <a href="@Url.Action("HuyDH", "Sale", new { id=item.idDDH})"><span class="ti-trash"></span></a> 
+            </td>
+        </tr>
+            }
+        </table>
+    </div>
+</div>
+<style>
+    .ti-trash {
+        font-size: 25px;
+        color: red;
+    }
+</style>
+<!-- //single -->

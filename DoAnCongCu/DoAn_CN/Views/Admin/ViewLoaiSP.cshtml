@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "ViewLoaiSP";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="main-page">
+    <div class="tables">
+        <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+            <h4>Loại sản phẩm</h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Mã loại</th>
+                        <th>Tên danh mục</th>
+                        <th>Tên thương hiệu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>@item.idLoai</td>
+                        <td>@item.DanhMuc.TenDM</td>
+                        <td>@item.TenLoai</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

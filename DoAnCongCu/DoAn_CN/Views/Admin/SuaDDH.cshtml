@@ -1,0 +1,42 @@
+﻿@model DoAn_CN.Models.DonDatHang
+
+@{
+    ViewBag.Title = "SuaDDH";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="main-page">
+    <div class="forms">
+        <div class=" form-grids row form-grids-right">
+            <div class="widget-shadow " data-example-id="basic-forms">
+                <div class="form-title">
+                    <h4>Sửa trạng thái đơn đặc hàng @Model.idDDH</h4>
+                </div>
+                <br />
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.idDDH)
+
+                <div class="form-group">
+                    <span class="control-label col-md-2">Trạng thái</span>
+                    <div class="col-md-9">
+                        @Html.DropDownList("idTrangthai")
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-9">
+                        <input type="submit" value="Lưu thay đổi" class="btn btn-default" />
+                    </div>
+                </div>
+                <br />
+            </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

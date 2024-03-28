@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Thongtin";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+
+<div class="container">
+    <div class="single">
+        @using (Html.BeginForm())
+        {
+            <b style="text-align:center; font-size:30pt">Thông tin tài khoản</b>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Họ tên</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="HoTen" value="@Model.HoTen" required />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Ngày sinh</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="Ngaysinh" value="@String.Format("{0:dd/MM/yyyy}", Model.Ngaysinh)" required />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Số điện thoại</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="DienthoaiKH" value="@Model.DienthoaiKH" required />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="Email" value="@Model.Email" required />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Địa chỉ</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="DiachiKH" value="@Model.DiachiKH" required />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Tên đăng nhập</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="Taikhoan" value="@Model.Taikhoan" readonly />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Mật khẩu</label>
+                <div class="col-sm-4">
+                    <input type="password" class="form-control" name="Matkhau" id="Matkhau" value="@Model.Matkhau" required/>
+                </div>
+                <span class="ti-eye" onclick="show()"> </span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-9">
+                    <input type="submit" value="Lưu thay đổi" class="btn btn-default" />
+                </div>
+            </div>
+            <br />
+            <br />
+        }
+        
+    </div>
+</div>
+

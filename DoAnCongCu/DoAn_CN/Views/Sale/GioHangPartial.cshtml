@@ -1,0 +1,13 @@
+﻿<a href="@Url.Action("ViewGH","Sale")">
+    <h3>
+        <div class="total">
+            <i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
+            @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ
+        </div>
+    </h3>
+</a>
+<p>
+    <a href="@Url.Action("ViewGH","Sale")" class="simpleCart_empty">
+        (@ViewBag.TongSoLuong)
+    </a>
+</p>

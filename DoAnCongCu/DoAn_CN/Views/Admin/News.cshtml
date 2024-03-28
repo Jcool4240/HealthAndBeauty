@@ -1,0 +1,72 @@
+﻿@using DoAn_CN.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<BaiViet_Admin>
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+   
+}
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text> . . . </text>
+    }
+}
+
+<div class="main-page">
+    <div class="tables">
+        <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+            <div style="display:inline-block;width:100%">
+                <button onclick="document.location.href = '/Admin/ThemNews'" style=" background-color: #F2B33F; color: #fff;">Tạo bài viết</button>
+                <div style="float:right">
+                    <form action="/Admin/TimKiemNew" method="post">
+                        <input type="text" name="keyword" />
+                        <button type="submit">Tìm kiếm</button>
+                    </form>
+                </div>
+            </div>
+            <hr />
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Mã bài viết</th>
+                        <th>Tiêu đề</th>
+                        <th>Ảnh bìa</th>
+                        <th>Nội dung</th>
+                        <th>Ngày thêm</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.id</td>
+                            <td>@Truncate(item.TieuDe, 50)</td>
+                            <td><img src="~/Content/Home/images/@item.Avatar" width="130" /></td>
+                            <td>@Html.Raw(Truncate(item.NoiDung, 50))</td>
+                        <td><span style="color:#2dde98">@String.Format("{0:dd/MM/yyyy}", item.NgayThem)</span></td>
+                        <td>
+                            <a href="@Url.Action("SuaBA","Admin", new { id = item.id})" class="ti-book"></a> <br /> <br />
+                            <a href="@Url.Action("XoaBA","Admin",new { id = item.id})" class="ti-trash"></a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+                <nav>
+                    <ul class="pagination pagination-sm">
+
+                        <li>@Html.PagedListPager(Model, page => Url.Action("News", new { page = page }))</li>
+
+                    </ul>
+                </nav>
+            </table>
+        </div>
+    </div>
+</div>

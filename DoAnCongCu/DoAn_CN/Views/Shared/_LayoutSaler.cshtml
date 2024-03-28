@@ -1,0 +1,295 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jcool Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Hướng dẫn làm đẹp và chăm sóc sức khỏe" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+ 
+    <link rel="shortcut icon" href="~/Content/Home/images/Web_DA.png" type="image/png" />
+
+    <link href="~/Content/themify-icons/themify-icons.css" rel="stylesheet" />
+    <link href="~/Content/Sale/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/Content/Sale/css/flexslider.css" type="text/css" media="screen" />
+    <link href="~/Content/Sale/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="~/Content/Sale/js/jquery-2.1.4.min.js"></script>
+    <script src="~/Content/Sale/js/imagezoom.js"></script>
+    <script src="~/Content/Sale/js/jquery.flexslider.js"></script>
+    <script src="~/Content/Sale/js/simpleCart.min.js"></script>
+    <script type="text/javascript" src="~/Content/Sale/js/bootstrap-3.1.1.min.js"></script>
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
+    <script src="~/Content/Sale/js/jquery.easing.min.js"></script>
+    <link href="~/Content/Sale/css/pignose.layerslider.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        isBool = true;
+        function show() {
+            if (isBool) {
+                document.getElementById("Matkhau").setAttribute("type", "text");
+                isBool = false;
+            } else {
+                document.getElementById("Matkhau").setAttribute("type", "password");
+                isBool = true;
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <div id="fb-root"></div>
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "114351136949111");
+        chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v12.0'
+            });
+        };
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div class="header">
+        <div class="container">
+            <ul>
+                <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span>Giao hàng miễn phí và nhanh chóng</li>
+                <li><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Miễn phí vận chuyển trên tất cả các đơn đặt hàng</li>
+                <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:info@example.com">JcoolStore@gmail.com</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="header-bot">
+        <div class="container">
+            <div class="col-md-3 header-left">
+                <h1><a href="@Url.Action("Index","Sale")"><img src="~/Content/Sale/images/DA_CN.jpg"></a></h1>
+            </div>
+            <div class="col-md-6 header-middle">
+                <form method="POST" class="search_form" action="/Sale/Search">
+                    <div class="search">
+                        <input type="search" name="keyword" id="timkiem" placeholder="Hôm nay bạn muốn tìm mua gì?" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" required="">
+                    </div>
+                    <div class="section_room">
+                        <select id="country" onchange="change_country(this.value)" class="frm-field required">
+                            <option value="null">Tất cả sản phẩm</option>
+
+                        </select>
+                    </div>
+                    <div class="sear-sub">
+                        <input type="submit" value=" ">
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+            <div class="col-md-3 header-right footer-bottom">
+                <ul>
+                    @if (Session["tk"] != null)
+                    {
+                        <li>
+                            <a href="@Url.Action("SignOut","NguoiDung")" class="use1"><span>Đăng xuất </span></a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="#" class="use1" data-toggle="modal" data-target="#myModal4"><span>Đăng nhập</span></a>
+                        </li>
+
+                    }
+
+                    <li><a class="fb" href="#"></a></li>
+                    <li><a class="twi" href="#"></a></li>
+                    <li><a class="insta" href="#"></a></li>
+                    <li><a class="you" href="#"></a></li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="ban-top">
+        <div class="container">
+            <div class="top_nav_left">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav menu__list">
+                                <li class=" menu__item"><a class="menu__link" href="@Url.Action("AllProduct","Sale")">Sản phẩm</a></li>
+                                <li class="dropdown menu__item">
+                                    <a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Làm đẹp <span class="caret"></span></a>
+                                    <ul class="dropdown-menu multi-column columns-3">
+                                        <div class="row">
+                                            <div class="col-sm-6 multi-gd-img1 multi-gd-text ">
+                                                <a href="mens.html"><img src="~/Content/Sale/images/wooo.jpg" alt=" " /></a>
+                                            </div>
+                                            <div class="col-sm-3 multi-gd-img">
+                                                <ul class="multi-column-dropdown">
+                                                    <li><a href="@Url.Action("SPTheoLoai/1")">Trang điểm</a></li>
+                                                    <li><a href="@Url.Action("SPTheoLoai/2")">Chăm sóc da mặt</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-3 multi-gd-img">
+                                                <ul class="multi-column-dropdown">
+                                                    <li><a href="@Url.Action("SPTheoLoai/3")">Chăm sóc cơ thể</a></li>
+                                                    <li><a href="@Url.Action("SPTheoLoai/4")">Chăm sóc tóc</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </ul>
+                                </li>
+
+
+                                <li class="dropdown menu__item">
+                                    <a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chăm sóc sức khỏe <span class="caret"></span></a>
+                                    <ul class="dropdown-menu multi-column columns-3">
+                                        <div class="row">
+                                            <div class="col-sm-3 multi-gd-img">
+                                                <ul class="multi-column-dropdown">
+                                                    <li><a href="@Url.Action("SPTheoLoai/5")">Thực phẩm chức năng</a></li>
+
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-3 multi-gd-img">
+                                                <ul class="multi-column-dropdown">
+                                                    <li><a href="@Url.Action("SPTheoLoai/6")">Thực phẩm dinh dưỡng</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="col-sm-6 multi-gd-img multi-gd-text ">
+                                                <a href="womens.html"><img src="~/Content/Sale/images/wooo1.jpg" alt=" " /></a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </ul>
+                                </li>
+                                <li class=" menu__item"><a class="menu__link" href="@Url.Action("LienHe","Home")">Liên hệ</a></li>
+                                @if (Session["tk"] != null)
+                                {
+                                    <li class=" menu__item"><a class="menu__link" href="@Url.Action("LichSuMH","Sale", new { id = Session["id"] })">Lịch sử mua hàng</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="top_nav_right">
+                <div class="cart box_1">
+                    @Html.Action("GioHangPartial", "Sale")
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    @RenderBody()
+    <div class="footer">
+        <div class="container">
+            <div class="col-md-3 footer-left">
+                <h2><a href="index.html"><img src="~/Content/Sale/images/DA_CN.jpg" alt=" " /></a></h2>
+                <p>
+                    Website chúng tôi chuyên cung cấp các sản phẩm chất lượng có uy tín và mới nhất trên thị trường hiện nay
+
+                </p>
+                <p>Hãy ghé thăm trang web của chúng tôi và đừng bỏ lỡ các sản phẩm mới nhé!</p>
+            </div>
+            <div class="col-md-9 footer-right">
+                <div class="clearfix"></div>
+                <div class="sign-grds">
+                    <div class="col-md-4 sign-gd">
+                        <h4>Điều hướng</h4>
+                        <ul>
+                            <li><a href="@Url.Action("Index","Sale")">Trang chủ</a></li>
+                            <li><a href="@Url.Action("ViewGH","Sale")">Giỏ hàng</a></li>
+                            <li><a href="@Url.Action("Index","NguoiDung")">Đăng nhập</a></li>
+                            <li><a href="@Url.Action("LienHe","Home")">Liên hệ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 sign-gd-two">
+                        <h4>Liên hệ</h4>
+                        <ul>
+                            <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Address :  <span>Hồ Chí Minh City.</span></li>
+                            <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email :  <a href="mailto:oslthanhduy@mail.com">oslthanhduy@gmail.com</a></li>
+                            <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Phone : (+84) 76 345 6789.</li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <p class="copy-right">Healthy and beauty | Design by <a href="http://w3layouts.com/">Jcool</a></p>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-info">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body modal-spa">
+                    <div class="login-grids">
+                        <div class="login">
+                            <div class="login-right">
+                                <h3>Đăng nhập tài khoản của bạn</h3>
+                                @using (Html.BeginForm("LogIn", "NguoiDung"))
+                                {
+                                    <form>
+                                        <div class="sign-in">
+                                            <h4>Tài khoản :</h4>
+                                            <input type="text" value="" name="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">
+                                        </div>
+                                        <div class="sign-in">
+                                            <h4>Mật khẩu :</h4>
+                                            <input type="password" value="" name="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+                                            <a href="#">Quên mật khẩu?</a>
+                                        </div>
+                                        <div class="single-bottom">
+                                            <input type="checkbox" id="brand" value="">
+                                            <label for="brand"><span></span>Nhớ mật khẩu.</label>
+                                        </div>
+                                        <div class="sign-in">
+                                            <input type="submit" value="Đăng nhập">
+                                        </div>
+                                    </form>
+                                }
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

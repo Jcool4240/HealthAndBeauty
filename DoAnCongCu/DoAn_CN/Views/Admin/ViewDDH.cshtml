@@ -1,0 +1,67 @@
+﻿@using DoAn_CN.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<DonDatHang>
+@{
+    ViewBag.Title = "ViewDDH";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var keyword = TempData["kwd"];
+}
+
+<div class="main-page">
+    <div class="tables">
+        <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+            <div style="display:inline-block;width:100%">
+               
+                <div style="float:right">
+                    <form action="/Admin/TimKiemDDH" method="post">
+                        <input type="text" name="keyword" />
+                        <button type="submit">Tìm kiếm</button>
+                    </form>
+                </div>
+            </div>
+            <hr />
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Mã dơn hàng</th>
+                        <th>Người nhận</th>
+                        <th>SĐT</th>
+                        <th>Địa chỉ </th>
+                        <th>Ngày đặt</th>
+                        <th>Ngày giao</th>
+                        <th>Thanh toán</th>
+                        <th>Trạng thái</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>@item.idDDH</td>
+                        <td>@item.NguoiNhan</td>
+                        <td>@item.SDT</td>
+                        <td>@item.DiaChiNhan</td>
+                        <td><span style="color:#2dde98">@String.Format("{0:dd/MM/yyyy}", item.NgayDat)</span></td>
+                        <td><span style="color:#fd5c63">@String.Format("{0:dd/MM/yyyy}", item.NgayGiao)</span></td>
+                        <td>@item.Datthanhtoan</td>
+                        <td>@item.TrangThai.TrangThai1</td>
+                        <td>
+                            <a href="@Url.Action("SuaDDH","Admin", new { id = item.idDDH})" class="ti-book"></a> <br /> <br />
+                            <a href="@Url.Action("Detail","Admin",new { id = item.idDDH})" class="ti-info-alt"></a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+                <nav>
+                    <ul class="pagination pagination-sm">
+
+                        <li>@Html.PagedListPager(Model, page => Url.Action("ViewDDH", new { page = page }))</li>
+
+                    </ul>
+                </nav>
+            </table>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,52 @@
+﻿@using DoAn_CN.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<BaiViet_Admin>
+@{
+    ViewBag.Title = "NewsDM";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text> . . . </text>
+    }
+}
+
+<div class="review">
+    <div class="container">
+        <h2>Bài viết hướng dẫn</h2>
+        <div class="review-sec">
+            <div class="review-grids">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6 revw">
+                        <div class="rft-grid">
+                            <div class="col-md-5 rft-pic">
+                                <a href="@Url.Action("Baiviet","Home", new { id = item.id })"><img src="~/Content/Home/images/@item.Avatar" class="img-responsive" alt="" /></a>
+                            </div>
+                            <div class="col-md-7 rft-pic-info">
+                                <h4><a href="@Url.Action("Baiviet","Home", new { id = item.id })">@Truncate(item.TieuDe, 25)</a></h4>
+                                <p>@Truncate(item.Mota,90)</p>
+                                <p style="color:#0dc5dd">@String.Format("{0:dd/MM/yyyy}", item.NgayThem)</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                }
+                <div class="clearfix"></div>
+                <div class="pagination-grid text-right">
+                    <ul class="pagination paging">
+                        <li class="active">@Html.PagedListPager(Model, page => Url.Action("NewsDM", new { page = page }))</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

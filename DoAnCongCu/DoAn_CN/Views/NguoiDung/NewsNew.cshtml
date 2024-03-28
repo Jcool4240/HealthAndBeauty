@@ -1,0 +1,40 @@
+﻿
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text> . . . </text>
+    }
+}
+<div class="col-md-4 content-right">
+    <ul class="nav nav-tabs nav2" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Bài viết xu hướng</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active re-pad2" id="home">
+            @foreach (var item in Model)
+            {
+                <div class="game1">
+                    <div class="col-md-3 tab-pic">
+
+                        <a href="single.html"><img src="~/Content/Home/images/@item.Avatar" alt="/" class="img-responsive"></a>
+                    </div>
+                    <div class="col-md-9 tab-pic-info">
+                        <h4><a href="single.html">@Truncate(item.Tieude, 26)</a></h4>
+                        <p>@Truncate(item.Mota, 55)</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="more">
+                        <a href="single.html">Read more</a>
+                    </div>
+                </div>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane re-pad2" id="profile">
+        </div>
+    </div>
+</div>
